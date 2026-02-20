@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Univesp Voting App
 
 Sistema de submissão e votação de projetos para grupo universitário da Univesp.
@@ -133,3 +134,7 @@ O projeto pode ser deployado em qualquer plataforma que suporte React/Vite.
 ## Licença
 
 MIT License
+=======
+# univesp-voting-app
+Sistema de votação de projetos para grupo universitário Univesp - SPA em React com autenticação restrita e dashboard em tempo real.
+>>>>>>> da6e1d2f518c995b6944eaa0d2ec7780c25f58f8
