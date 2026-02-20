@@ -1,0 +1,27 @@
+steps:
+  # Install dependencies
+  - name: 'node:18'
+    entrypoint: 'npm'
+    args: ['install']
+  
+  # Build the project
+  - name: 'node:18'
+    entrypoint: 'npm'
+    args: ['run', 'build']
+  
+  # Deploy to Firebase Hosting
+  - name: 'gcr.io/$PROJECT_ID/firebase'
+    args: ['deploy', '--only=hosting', '--project=$PROJECT_ID']
+  
+  # Deploy Firestore Rules
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['firestore', 'rules', 'update', 'firestore.rules', '--project=$PROJECT_ID']
+
+substitutions:
+  _PROJECT_ID: 'univesp-voting-app'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_HIGHCPU_8'
+
+timeout: '1200s'

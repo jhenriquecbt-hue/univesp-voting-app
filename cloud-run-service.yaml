@@ -1,0 +1,24 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: univesp-voting-app
+  annotations:
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/cpu-throttling: 'false'
+        run.googleapis.com/execution-environment: gen2
+    spec:
+      containerConcurrency: 1000
+      timeoutSeconds: 300
+      containers:
+      - image: gcr.io/univesp-voting-app/univesp-voting-app:latest
+        ports:
+        - containerPort: 5173
+        resources:
+          limits:
+            cpu: '2'
+            memory: 2Gi
+          startupCpuBoost: true
